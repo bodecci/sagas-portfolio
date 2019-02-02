@@ -7,12 +7,25 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 // Provider allows us to use redux within our react app
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
+import { takeEvery, put} from 'redux-saga/effects';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
+import axios from 'axios';
 
 // Create the rootSaga generator function
 function* rootSaga() {
+    yield takeEvery('ADD_PORTFOLIO', postPORTFOLIO);
+}
 
+function* postPORTFOLIO(action) {
+    try {
+        yield axios.post('/admin', action.payload);
+        const nextAction = {type: 'FETCH_PORTFOLIO'};
+        yield put(nextAction);
+    } catch (error) {
+        console.log('Error in making POST');
+        alert(`there was a problem in POST`);
+    }
 }
 
 // Create sagaMiddleware
