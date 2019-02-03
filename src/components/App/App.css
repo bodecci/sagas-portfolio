@@ -2,11 +2,14 @@
   text-align: center;
 }
 
+.admin-page {
+  text-align: left
+}
 
 .App-header {
   background-color: #222;
-  height: 150px;
-  padding: 20px;
+  height: 50px;
+  padding: 5px;
   color: white;
 }
 
