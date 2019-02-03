@@ -15,11 +15,25 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('ADD_PORTFOLIO', postPORTFOLIO);
+    yield takeEvery('FETCH_PORTFOLIO', getPortfolio);
+}
+
+function* getPortfolio(action) {
+    try {
+        const serverResponse = yield axios.get('/admin');
+        const action = {type:'SET_PROJECTS', payload: serverResponse.data};
+        yield put(action); //this triggers the reducer
+    } catch (error) {
+        console.log('Error in GET');
+        alert('theres a problem in GET');
+    }
 }
 
 function* postPORTFOLIO(action) {
     try {
         yield axios.post('/admin', action.payload);
+        console.log('action.payload: ', action.payload);
+        
         const nextAction = {type: 'FETCH_PORTFOLIO'};
         yield put(nextAction);
     } catch (error) {
