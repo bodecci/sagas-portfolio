@@ -5,7 +5,7 @@ const router = express.Router();
 
 //get projects from database
 router.get('/', (req, res) => {
-    const queryText = `SELECT * FROM "projects";`;
+    const queryText = `SELECT name FROM "projects";`;
     pool.query(queryText).then((result) => {
         res.send(result.rows);
     }).catch((error) => {
@@ -14,12 +14,10 @@ router.get('/', (req, res) => {
     });
 });
 
-
-
-
 // add new project to the database
 router.post('/', (req, res) => {
     const newInput = req.body;
+    console.log('newInput is: ', newInput);
     
     const queryText = `INSERT INTO projects
                         ("name", "description","thumbnail", "website", 

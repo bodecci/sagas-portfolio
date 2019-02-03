@@ -102,7 +102,7 @@ class AdminInput extends Component {
     render() {
         return(
             <div>
-                <header><h2>Add New Project</h2></header>
+                <p>Add New Project</p>
                 {JSON.stringify(this.state.newProject)}
                 <form onSubmit={this.addNewPortfolio}>
                     <input type='text' value={this.state.newProject.name} 

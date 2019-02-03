@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import AdminInput from './../Admin/AdminInput'
+import Admin from '../Admin/Admin';
 
 class App extends Component {
   // Renders the entire app on the DOM
@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <p>Empty Page</p>
-        <AdminInput />
+        <Admin />
       </div>
     );
   }
